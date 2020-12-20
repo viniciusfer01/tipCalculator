@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 function App() {
@@ -11,7 +11,12 @@ function App() {
 
   function handleTip(e) {
     setTip(e.target.value);
-  } 
+  }
+  
+  useEffect(()=>{
+    let total = Number(bill) + (Number(tip)*Number(bill)/100);
+    document.title="Total bill: "+total;
+  }, [bill, tip])
 
   return (
     <div>
