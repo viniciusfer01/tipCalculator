@@ -1,40 +1,25 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
+import SearchBox from './components/SeachBox';
 
 function App() {
-  const [bill, setBill] = useState('');
-  const [tip, setTip] = useState('');
 
-  const handleBill = (e) => {
-    setBill(e.target.value);
-  }
-
-  function handleTip(e) {
-    setTip(e.target.value);
-  }
+  const [text, setText] = useState('');
   
-  useEffect(()=>{
-    let total = Number(bill) + (Number(tip)*Number(bill)/100);
-    document.title="Total bill: "+total;
-  }, [bill, tip])
+  function handleText(newText) {
+    setText(newText);
+  }
 
   return (
     <div>
-      <h1>Tip Calculator</h1>
+      <h1>Listas</h1>
 
-      <input type="text" placeholder="Type the bill" value={bill} onChange={handleBill}/>
-
-      <br/>
-
-      <input type="text" placeholder="Type the tip percentage" value={tip} onChange={handleTip}/>
+      <SearchBox 
+        onText={handleText}
+      />
 
       <hr />
 
-      {bill.length > 0 && <p>Subtotal: {bill}</p>}
-
-      {bill.length > 0 && <p>Tip: {tip}</p>}
-
-      {bill.length > 0 && <p>Total: R${Number(bill) + (Number(tip)*Number(bill)/100)}</p>}
+      <h2>Seu Texto: {text}</h2>
 
     </div>
   );
